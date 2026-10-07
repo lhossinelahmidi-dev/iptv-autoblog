@@ -14,12 +14,12 @@ WP_APP_PASSWORD = os.environ.get("WP_APP_PASSWORD", "")
 GH_TOKEN = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN", "")
 
 if not WP_URL or not WP_USERNAME or not WP_APP_PASSWORD or not GH_TOKEN:
-    print("Error: Missing required environment variables (WP_URL, WP_USERNAME, WP_APP_PASSWORD, GH_TOKEN/GITHUB_TOKEN).")
+    print("Error: Missing required environment variables (WP_URL, WP_USERNAME, WP_APP_PASSWORD, GH_TOKEN).")
     exit(1)
 
-# Connect to GitHub Models AI (100% Free inside GitHub)
+# Connect to GitHub Models AI (Official GitHub Endpoint)
 client = OpenAI(
-    base_url="https://models.inference.ai.azure.com",
+    base_url="https://models.github.ai/inference",
     api_key=GH_TOKEN
 )
 
@@ -40,7 +40,7 @@ else:
 
 print(f"Selected Topic for today: '{selected_topic}'")
 
-# 3. Generate Article using GitHub AI
+# 3. Generate Article using GitHub Models AI
 system_prompt = """
 You are an expert tech writer and SEO specialist for 'WavePro TV' (waveprotv.com), a premier 4K IPTV service.
 Write an engaging, highly informative, 1000-word SEO-optimized blog post in HTML format.
@@ -57,17 +57,29 @@ Formatting requirements:
 
 user_prompt = f"Write a comprehensive, SEO-friendly guide about: '{selected_topic}'. Target IPTV users, streaming enthusiasts, and cord-cutters."
 
-print("Calling GitHub Models AI to write the article...")
-response = client.chat.completions.create(
-    model="gpt-4o-mini",
-    messages=[
-        {"role": "system", "content": system_prompt},
-        {"role": "user", "content": user_prompt}
-    ],
-    temperature=0.7
-)
+models_to_try = ["gpt-4o-mini", "meta-llama-3.1-70b-instruct", "gpt-4o"]
+article_html = None
 
-article_html = response.choices[0].message.content.strip()
+for model_name in models_to_try:
+    try:
+        print(f"Calling GitHub AI using model '{model_name}'...")
+        response = client.chat.completions.create(
+            model=model_name,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            temperature=0.7
+        )
+        article_html = response.choices[0].message.content.strip()
+        print(f"Article successfully generated with {model_name}!")
+        break
+    except Exception as e:
+        print(f"Model {model_name} failed: {e}. Trying next fallback...")
+
+if not article_html:
+    print("Error: All AI models failed to generate content.")
+    exit(1)
 
 # Clean code fences if present
 if article_html.startswith("```html"):
@@ -79,20 +91,25 @@ if article_html.endswith("```"):
 article_html = article_html.strip()
 
 # 4. Generate Article Excerpt
-excerpt_response = client.chat.completions.create(
-    model="gpt-4o-mini",
-    messages=[
-        {"role": "system", "content": "Write a 1-sentence catchy meta description (under 160 characters) for this blog post."},
-        {"role": "user", "content": selected_topic}
-    ],
-    temperature=0.5
-)
-article_excerpt = excerpt_response.choices[0].message.content.strip()
+try:
+    excerpt_response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": "Write a 1-sentence catchy meta description (under 160 characters) for this blog post."},
+            {"role": "user", "content": selected_topic}
+        ],
+        temperature=0.5
+    )
+    article_excerpt = excerpt_response.choices[0].message.content.strip()
+except Exception:
+    article_excerpt = f"Read our comprehensive guide on {selected_topic}. Tips, setup, and troubleshooting for WavePro TV subscribers."
 
 # 5. Publish to WordPress via REST API
 wp_api_endpoint = f"{WP_URL}/wp-json/wp/v2/posts"
 
-credentials = f"{WP_USERNAME}:{WP_APP_PASSWORD}"
+# Strip potential spaces in Application Password
+clean_password = WP_APP_PASSWORD.replace(" ", "")
+credentials = f"{WP_USERNAME}:{clean_password}"
 token = base64.b64encode(credentials.encode()).decode("utf-8")
 
 headers = {
