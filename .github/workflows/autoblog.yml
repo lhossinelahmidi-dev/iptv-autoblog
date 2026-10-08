@@ -5,6 +5,9 @@ on:
     # Runs daily at 08:20 UTC (~09:20 AM Morocco time) - off-peak minute to avoid GitHub runner queue delay
     - cron: '20 8 * * *'
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 permissions:
   contents: write

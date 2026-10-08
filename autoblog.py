@@ -142,6 +142,17 @@ headers = {
     "Content-Type": "application/json"
 }
 
+# Permanently delete default 'Hello world' post (ID 1) if present
+try:
+    print("Checking and permanently deleting default 'Hello world' post (ID 1)...")
+    del_res = requests.delete(f"{wp_api_endpoint}/1?force=true", headers=headers, timeout=15)
+    if del_res.status_code in [200, 201, 204]:
+        print("Successfully permanently deleted 'Hello world!' (Post ID 1).")
+    else:
+        print(f"Delete response status code: {del_res.status_code}")
+except Exception as e:
+    print(f"Cleanup check warning: {e}")
+
 post_data = {
     "title": selected_topic,
     "content": article_html,
