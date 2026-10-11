@@ -40,6 +40,13 @@ print(f"\nProcessing Topic: '{selected_topic}'")
 article_html = None
 article_excerpt = f"Complete expert guide on '{selected_topic}'. Tips, installation instructions, and best streaming practices for WavePro TV subscribers."
 
+import time
+
+# Organic randomized delay (30 to 300 seconds) so posting times vary naturally
+delay_seconds = random.randint(30, 300)
+print(f"Applying organic delay of {delay_seconds} seconds for natural publishing timing...")
+time.sleep(delay_seconds)
+
 # Attempt AI Generation if GH_TOKEN is present
 if GH_TOKEN:
     try:
@@ -49,12 +56,15 @@ if GH_TOKEN:
             api_key=GH_TOKEN
         )
         system_prompt = (
-            "You are an expert tech writer and SEO specialist for 'WavePro TV' (waveprotv.com), a premier 4K IPTV service. "
-            "Write an engaging, highly informative, 1000-word SEO-optimized blog post in clean HTML format. "
-            "Use <h2>, <h3>, <p>, <ul>, <li>, and <strong> tags. Include an introduction, key benefits, step-by-step setup, "
-            "troubleshooting FAQs, and conclude with a Call-To-Action to get a 24H trial at waveprotv.com. Do NOT include ```html markdown fences."
+            "You are a premier UK tech journalist, streaming specialist, and SEO authority writing for 'WavePro TV' (waveprotv.com). "
+            "Write an engaging, highly authoritative, 1000-word SEO-optimized blog post tailored specifically for UK cord-cutters and British sports enthusiasts. "
+            "Use natural British English phrasing and spelling (e.g., optimise, favour, colour, programme). "
+            "Target high-volume UK search terms: Premier League 3PM blackout, Sky Sports, TNT Sports, BBC iPlayer, Virgin Media and BT Broadband optimization, Firestick setup, and buffer-free 4K streaming. "
+            "Format in clean semantic HTML with <h2>, <h3>, <p>, <ul>, <li>, and <strong> tags. "
+            "Include an engaging intro for UK viewers, key advantages, a practical step-by-step setup guide, UK troubleshooting FAQs, and a compelling Call-To-Action to get an instant 24H test trial at waveprotv.com. "
+            "Do NOT include markdown fences like ```html."
         )
-        user_prompt = f"Write an in-depth article about: '{selected_topic}'."
+        user_prompt = f"Write an in-depth, comprehensive UK-targeted article about: '{selected_topic}'."
 
         for model in ["gpt-4o-mini", "meta-llama-3.1-70b-instruct", "gpt-4o"]:
             try:

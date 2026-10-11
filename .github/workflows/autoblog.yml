@@ -2,8 +2,9 @@ name: Automated Daily IPTV Blog Post
 
 on:
   schedule:
-    # Runs daily at 08:20 UTC (~09:20 AM Morocco time) - off-peak minute to avoid GitHub runner queue delay
-    - cron: '20 8 * * *'
+    # Runs at varied times throughout the day (midday & peak evening UK time)
+    - cron: '35 11 * * *'
+    - cron: '45 19 * * *'
   workflow_dispatch:
   push:
     branches:
