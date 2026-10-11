@@ -32,14 +32,6 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Add Trustpilot Verification via REST API
-        env:
-          WP_URL: ${{ secrets.WP_URL }}
-          WP_USERNAME: ${{ secrets.WP_USERNAME }}
-          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
-        run: |
-          python add_trustpilot.py
-
       - name: Generate & Publish Article to WordPress
         env:
           WP_URL: ${{ secrets.WP_URL }}
