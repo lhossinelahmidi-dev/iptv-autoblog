@@ -32,14 +32,6 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Repair and Restore WordPress Plugins
-        env:
-          WP_URL: ${{ secrets.WP_URL }}
-          WP_USERNAME: ${{ secrets.WP_USERNAME }}
-          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
-        run: |
-          python repair_plugins.py
-
       - name: Generate & Publish Article to WordPress
         env:
           WP_URL: ${{ secrets.WP_URL }}
