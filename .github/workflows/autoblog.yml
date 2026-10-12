@@ -6,6 +6,9 @@ on:
     - cron: '35 11 * * *'
     - cron: '45 19 * * *'
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -29,15 +32,13 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Generate & Publish Article to WordPress
+      - name: Fix All Posts & Deploy Theme
         env:
           WP_URL: ${{ secrets.WP_URL }}
           WP_USERNAME: ${{ secrets.WP_USERNAME }}
           WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          python autoblog.py
+          python fix_all_posts.py
 
       - name: Commit & Push Updated Topics List
         run: |
