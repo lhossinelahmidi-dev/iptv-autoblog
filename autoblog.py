@@ -122,6 +122,154 @@ CUSTOM_TOPIC_GUIDES = {
     <li><strong>Choose a True Anti-Freeze 4K Server:</strong> <a href="https://waveprotv.com/#pricing">WavePro TV</a> uses dedicated UK/EU load-balanced servers with 99.9% uptime.</li>
 </ol>
 """
+    },
+    "IPTV Smarters Pro Setup UK": {
+        "excerpt": "Complete 2026 UK tutorial for installing and configuring IPTV Smarters Pro on Firestick, Samsung/LG Smart TV, Android, and iOS using Xtream Codes API.",
+        "content": """
+<p><strong>IPTV Smarters Pro</strong> remains one of the easiest and most reliable streaming apps in the UK because it separates <em>Live TV</em>, <em>Movies (VOD)</em>, and <em>Series</em> into clean, family-friendly sections. Here is how to complete your <strong>IPTV Smarters Pro Setup UK</strong> in under three minutes.</p>
+<h2>Step-by-Step Installation &amp; Login</h2>
+<ol>
+    <li><strong>On Amazon Firestick / Android TV:</strong> Open the free <em>Downloader</em> app, enter code <code>250931</code>, and install IPTV Smarters Pro.</li>
+    <li><strong>On Samsung, LG, or iOS:</strong> Download <em>Smarters Player Lite</em> directly from your official App Store.</li>
+    <li><strong>Select Xtream Codes API Login:</strong> Enter any profile name (e.g., WavePro 4K) along with the Username, Password, and Server URL provided by <a href="https://waveprotv.com/#pricing">WavePro TV</a>.</li>
+    <li><strong>Enable HW+ Decoder:</strong> Go to <em>Settings &rarr; Player Settings</em> inside Smarters and select <strong>Hardware Decoder</strong> for smooth 4K and 50fps sports playback.</li>
+</ol>
+"""
+    },
+    "Watch Premier League in 4K UHD": {
+        "excerpt": "Experience every Premier League match in native 3840x2160 4K UHD and 50fps—including Super Sunday, TNT Sports Ultimate 4K, and Saturday 3PM kickoffs.",
+        "content": """
+<p>There is nothing quite like watching live top-flight English football in native <strong>4K Ultra HD (3840x2160) at 50 frames per second</strong>. When you <strong>Watch Premier League in 4K UHD</strong> with WavePro TV, every blade of grass, shirt number, and fast counter-attack is rendered without motion blur.</p>
+<h2>Every Premier League Kickoff Slot Covered in 4K &amp; FHD</h2>
+<ul>
+    <li><strong>Sky Sports Main Event UHD &amp; Premier League UHD:</strong> Friday Night Football, Saturday 5:30 PM, Super Sunday doubleheaders, and Monday Night Football in HLG HDR.</li>
+    <li><strong>TNT Sports Ultimate 4K:</strong> Saturday 12:30 PM lunchtime clashes and full midweek Premier League rounds in 4K 50fps.</li>
+    <li><strong>Saturday 3:00 PM Blackout Fixtures:</strong> Stream every 3PM kickoff live via Hub Premier 4K, Peacock, Optus Sport, and SuperSport Premier League.</li>
+</ul>
+<p>Get matchday ready in 2 minutes at <a href="https://waveprotv.com/#pricing">WavePro TV</a>!</p>
+"""
+    },
+    "Best 4K IPTV Subscription UK": {
+        "excerpt": "Compare what makes the Best 4K IPTV Subscription in the UK for 2026: real 3840x2160 HEVC channels, 100,000+ 4K VOD titles, 99.9% matchday uptime, and instant activation.",
+        "content": """
+<p>Upgrading to the <strong>Best 4K IPTV Subscription UK</strong> transforms your television from standard broadcast quality into a true home cinema and live sports arena. Unlike budget playlists that label 720p feeds as 4K, <strong>WavePro TV</strong> provides dedicated high-bitrate <strong>HEVC 4K UHD</strong> and <strong>RAW 50fps</strong> channels.</p>
+<h2>What Is Included in Our 2026 UK 4K Subscription?</h2>
+<ul>
+    <li><strong>20,000+ Live Channels:</strong> Full UK, Irish, US, Canadian, and European lineups with dedicated 4K UHD sports and entertainment categories.</li>
+    <li><strong>100,000+ Movies &amp; Series on Demand:</strong> Daily updated 4K HDR movies and complete box sets from Netflix, Disney+, Apple TV+, and Prime Video.</li>
+    <li><strong>Anti-Freeze 8.0 UK Routing:</strong> Zero buffering during peak Premier League, Champions League, and boxing PPV broadcasts.</li>
+</ul>
+<p>View our 1, 3, 6, and 12-month packages today at <a href="https://waveprotv.com/#pricing">waveprotv.com/#pricing</a>.</p>
+"""
+    },
+    "TiviMate 4K Setup Guide UK": {
+        "excerpt": "Master TiviMate IPTV Player on your Firestick 4K Max or Nvidia Shield. Learn the Downloader install code, Xtream login steps, and best 4K 50fps EPG settings.",
+        "content": """
+<p>For UK viewers using an Amazon Firestick 4K Max, Sony Bravia Google TV, or Nvidia Shield, <strong>TiviMate</strong> is the undisputed #1 IPTV player. Follow this <strong>TiviMate 4K Setup Guide UK</strong> to get Sky Q-style TV guides and multi-screen 4K sports running smoothly.</p>
+<h2>How to Install &amp; Optimize TiviMate for 4K IPTV</h2>
+<ol>
+    <li>Open <strong>Downloader</strong> on your Firestick or Android TV and enter code <code>272483</code> to install the latest official TiviMate APK.</li>
+    <li>Click <strong>Add Playlist &rarr; Xtream Codes</strong> and enter your <a href="https://waveprotv.com/#pricing">WavePro TV</a> Server URL, Username, and Password.</li>
+    <li>Go to <strong>Settings &rarr; Playback</strong>, set Buffer Size to <em>Medium</em>, and enable <strong>Auto Frame Rate (AFR)</strong> so 50fps UK football matches your TV's refresh rate seamlessly.</li>
+</ol>
+"""
+    },
+    "Watch UFC & Boxing PPV Live UK": {
+        "excerpt": "Stop paying £24.99 per fight night on TNT Sports Box Office, Sky Sports Box Office, and DAZN PPV. Stream every heavyweight boxing main event and UFC card live in HD/4K.",
+        "content": """
+<p>With major heavyweight boxing clashes and numbered UFC cards now locked behind £19.99 to £29.99 pay-per-view paywalls across <strong>Sky Sports Box Office</strong>, <strong>TNT Sports Box Office</strong>, and <strong>DAZN PPV</strong>, fight fans in the UK face huge extra bills every month. With <strong>WavePro TV</strong>, every single PPV fight night is included automatically in your subscription.</p>
+<h2>Where to Find Live Fight Nights on Your EPG</h2>
+<ul>
+    <li><strong>UK | Box Office &amp; Live PPV Events:</strong> Dedicated channels for Sky Sports Box Office HD, TNT Sports Box Office HD, and DAZN PPV UK/US.</li>
+    <li><strong>UFC Fight Pass &amp; ESPN+ PPV Feeds:</strong> Watch Early Prelims, Prelims, and the Main Card in 1080p 60fps and 4K UHD.</li>
+</ul>
+<p>Never miss ring walks again—join <a href="https://waveprotv.com/#pricing">WavePro TV</a> today!</p>
+"""
+    },
+    "Smart TV 4K IPTV Setup (Samsung & LG)": {
+        "excerpt": "Install 4K IPTV directly on your Samsung Tizen or LG webOS Smart TV in 3 minutes using IBO Player Pro, SmartOne IPTV, or Smarters Player—no external box needed.",
+        "content": """
+<p>Your <strong>Samsung QLED/OLED (Tizen)</strong> or <strong>LG OLED/QNED (webOS)</strong> television already has the hardware power to decode 4K HDR streams natively. Follow this <strong>Smart TV 4K IPTV Setup</strong> guide to watch all 20,000+ channels using your original TV remote.</p>
+<h2>Fast Setup on Samsung &amp; LG App Stores</h2>
+<ol>
+    <li>Open the <strong>Samsung Apps Store</strong> or <strong>LG Content Store</strong> on your television.</li>
+    <li>Download <strong>IBO Player Pro</strong>, <strong>SmartOne IPTV</strong>, or <strong>IPTV Smarters Pro</strong>.</li>
+    <li>Share the on-screen Device ID &amp; Key with our <a href="https://waveprotv.com">WavePro TV WhatsApp support team</a> (or log in with your Xtream Codes) and we will load your full 4K UK channel list remotely in seconds!</li>
+</ol>
+"""
+    },
+    "Watch Formula 1 Live in 4K UHD": {
+        "excerpt": "Follow every F1 Practice, Sprint, Qualifying, and Sunday Grand Prix in native 3840x2160 4K 50fps on Sky Sports F1 UHD and F1TV Pro feeds with WavePro TV.",
+        "content": """
+<p>Formula 1 is a sport of millisecond margins and breathtaking speed, and watching it in compressed standard definition doesn't do it justice. When you <strong>Watch Formula 1 Live in 4K UHD</strong> on WavePro TV, you get the full <strong>Sky Sports F1 UHD (3840x2160 at 50fps)</strong> broadcast alongside dedicated onboard and telemetry feeds.</p>
+<h2>Every F1 Session Live &amp; On-Demand</h2>
+<ul>
+    <li><strong>Sky Sports F1 UHD &amp; Main Event 4K:</strong> Full UK studio build-up, Martin's Grid Walk, live race coverage, and Ted's Notebook.</li>
+    <li><strong>F1TV Pro Multi-Cam Feeds:</strong> Pit lane channel, live driver tracker map, and onboard cameras.</li>
+</ul>
+<p>Start your engines at <a href="https://waveprotv.com/#pricing">WavePro TV</a>!</p>
+"""
+    },
+    "Best UK IPTV Channels List 2026": {
+        "excerpt": "Browse the full 2026 UK IPTV channel list included with WavePro TV—covering Sky Sports 4K, TNT Sports Ultimate, Sky Cinema, BBC/ITV Regional HD, and 100,000+ VOD.",
+        "content": """
+<p>Curious what channels are actually included when you switch from cable to IPTV? Here is the complete <strong>Best UK IPTV Channels List 2026</strong> included with every <a href="https://waveprotv.com/#pricing">WavePro TV</a> package:</p>
+<ul>
+    <li><strong>UK Freeview &amp; Regional HD:</strong> BBC One/Two/Three/Four HD, ITV1–4 HD, Channel 4/5 HD, E4, Dave, Gold.</li>
+    <li><strong>UK Sports (4K UHD &amp; 50fps):</strong> All 11 Sky Sports channels, TNT Sports 1–4 &amp; Ultimate 4K, Premier Sports 1–2, Racing TV, Sky Sports Box Office, and 3PM EPL Matchday feeds.</li>
+    <li><strong>Sky Cinema &amp; Entertainment:</strong> All 11 Sky Cinema FHD/4K channels, Sky Atlantic VIP, Sky Max, Discovery, Nat Geo, and UK Kids networks.</li>
+    <li><strong>International Bouquets:</strong> Full USA, Canada, Ireland, European, Arabic, and Worldwide live TV + 100,000+ 4K/FHD Movies &amp; Series.</li>
+</ul>
+"""
+    },
+    "Fix IPTV Buffering on Virgin & BT": {
+        "excerpt": "Stop evening slowdowns and Saturday football blocks on Virgin Media Hub and BT Smart Hub. Apply these 3 quick router and DNS tweaks for instant 4K streaming.",
+        "content": """
+<p>If your streams freeze during live weekend football on <strong>Virgin Media</strong> or <strong>BT Broadband</strong>, your ISP's built-in traffic filters are likely throttling your connection. Here is how to <strong>Fix IPTV Buffering on Virgin &amp; BT</strong> in under two minutes:</p>
+<ol>
+    <li><strong>Turn Off ISP Security Shields:</strong> Disable <em>Virgin Media Web Safe / Child Safe</em> in My Virgin Media, or turn off <em>BT Web Protect &amp; Smart Setup</em> in your BT Hub settings.</li>
+    <li><strong>Switch DNS to 1.1.1.1:</strong> Change your Firestick or Smart TV DNS from automatic to Cloudflare (<code>1.1.1.1</code>) to bypass slow ISP DNS servers.</li>
+    <li><strong>Use 5GHz Wi-Fi or WireGuard VPN:</strong> Connect via 5GHz Wi-Fi and pair with <a href="https://waveprotv.com/#pricing">WavePro TV</a>'s Anti-Freeze 8.0 servers for uninterrupted 4K playback.</li>
+</ol>
+"""
+    },
+    "Best 4K IPTV for Apple TV & iPhone": {
+        "excerpt": "Stream native 4K HDR live TV and movies on Apple TV 4K, iPad Pro, and iPhone 16 using top App Store players like UHF, iPlayTV, and Smarters Player Lite.",
+        "content": """
+<p>The <strong>Apple TV 4K</strong> and modern <strong>iPhones/iPads</strong> pack desktop-class A-series and M-series chips that decode 4K HEVC streams effortlessly. Choosing the <strong>Best 4K IPTV for Apple TV &amp; iPhone</strong> lets you enjoy Dolby Vision VOD, Picture-in-Picture sports, and iCloud playlist syncing across all your Apple devices.</p>
+<h2>Top 3 App Store Players for WavePro TV 4K</h2>
+<ul>
+    <li><strong>UHF – Love Your IPTV:</strong> Best overall for Apple TV 4K, iPhone, iPad, and Mac with instant iCloud sync and native Metal 4K decoding.</li>
+    <li><strong>iPlayTV:</strong> Sleek tvOS interface with rich UK EPG timelines and channel logos.</li>
+    <li><strong>Smarters Player Lite:</strong> Free download on the UK App Store with fast Xtream Codes API login.</li>
+</ul>
+<p>Get your Apple-ready 4K login at <a href="https://waveprotv.com/#pricing">WavePro TV</a>!</p>
+"""
+    },
+    "Sky Sports & TNT Sports in 4K IPTV": {
+        "excerpt": "Watch Sky Sports Main Event UHD and TNT Sports Ultimate 4K together in one subscription. Save over £900/year while enjoying every Premier League and Champions League match.",
+        "content": """
+<p>Paying separately for Sky Q/Glass UHD and TNT Sports via Discovery+ Premium now costs UK households nearly £100 every month. By streaming <strong>Sky Sports &amp; TNT Sports in 4K IPTV</strong> with WavePro TV, you get every single channel from both broadcasters in native <strong>3840x2160 4K UHD and 50fps</strong> on one screen.</p>
+<ul>
+    <li><strong>Sky Sports UHD Channels:</strong> Main Event UHD, Premier League, Football, F1 UHD, Cricket, Golf, Tennis, and Arena.</li>
+    <li><strong>TNT Sports 4K Channels:</strong> TNT Sports 1, 2, 3, 4, TNT Sports Ultimate 4K, and Box Office PPV events.</li>
+</ul>
+<p>Switch today at <a href="https://waveprotv.com/#pricing">WavePro TV</a> and get instant activation in 2 minutes!</p>
+"""
+    },
+    "WavePro TV 4K UK Review 2026": {
+        "excerpt": "An inside look at WavePro TV's 2026 UK 4K service—testing our 20,000+ live channels, Anti-Freeze 8.0 matchday servers, 100,000+ VOD library, and 24/7 WhatsApp support.",
+        "content": """
+<p>Why have thousands of British cord-cutters made <strong>WavePro TV</strong> their primary home entertainment service in 2026? In this comprehensive <strong>WavePro TV 4K UK Review</strong>, we examine the server infrastructure, picture quality, and customer support that set WavePro TV apart.</p>
+<h2>Key Highlights of WavePro TV 4K</h2>
+<ul>
+    <li><strong>True 4K UHD &amp; 50fps Sports:</strong> Uncompressed feeds for Premier League, Champions League, Formula 1, UFC, and Boxing PPV.</li>
+    <li><strong>Anti-Freeze 8.0 European CDN:</strong> 99.9% uptime even during peak Saturday 3PM and Tuesday 8PM kickoffs.</li>
+    <li><strong>100,000+ 4K/FHD VOD Library:</strong> Updated daily with the newest cinema movies and complete streaming box sets.</li>
+    <li><strong>3-Minute WhatsApp Support:</strong> Friendly 24/7 assistance to help you configure Firestick, Smart TV, Android TV, or Apple TV.</li>
+</ul>
+<p>Experience it yourself—view our plans or request a 24H trial at <a href="https://waveprotv.com/#pricing">waveprotv.com</a>!</p>
+"""
     }
 }
 
