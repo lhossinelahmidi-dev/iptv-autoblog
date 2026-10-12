@@ -21,7 +21,7 @@ headers = {
 
 cs_url = f"{WP_URL}/wp-json/code-snippets/v1/snippets"
 
-with open("theme_bundle.json", "r", encoding="utf-8") as f:
+with open("theme_bundle.json", "r", encoding="utf-8-sig") as f:
     bundle = json.load(f)
 
 print("Deploying updated theme files via Code Snippets API...")
