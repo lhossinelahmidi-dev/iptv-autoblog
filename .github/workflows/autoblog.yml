@@ -8,9 +8,6 @@ on:
     - cron: '15 12 * * *'
     - cron: '30 14 * * *'
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 permissions:
   contents: write
@@ -35,13 +32,15 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Deploy Clean Images
+      - name: Generate & Publish Article to WordPress
         env:
           WP_URL: ${{ secrets.WP_URL }}
           WP_USERNAME: ${{ secrets.WP_USERNAME }}
           WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          python deploy_funcs.py
+          python autoblog.py
 
       - name: Commit & Push Updated Topics List
         run: |
