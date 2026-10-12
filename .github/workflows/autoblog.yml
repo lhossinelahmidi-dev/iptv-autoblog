@@ -32,6 +32,14 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Deploy WavePro Theme Updates to Server
+        env:
+          WP_URL: ${{ secrets.WP_URL }}
+          WP_USERNAME: ${{ secrets.WP_USERNAME }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: |
+          python deploy_theme.py
+
       - name: Generate & Publish Article to WordPress
         env:
           WP_URL: ${{ secrets.WP_URL }}
