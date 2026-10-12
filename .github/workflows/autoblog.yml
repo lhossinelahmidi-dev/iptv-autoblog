@@ -2,9 +2,11 @@ name: Automated Daily IPTV Blog Post
 
 on:
   schedule:
-    # Runs at varied times throughout the day (midday & peak evening UK time)
-    - cron: '35 11 * * *'
-    - cron: '45 19 * * *'
+    # Runs strictly between 5:00 AM and 4:00 PM (multiple check slots to guarantee daily delivery)
+    - cron: '20 6 * * *'
+    - cron: '45 9 * * *'
+    - cron: '15 12 * * *'
+    - cron: '30 14 * * *'
   workflow_dispatch:
 
 permissions:

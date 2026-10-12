@@ -4,6 +4,7 @@ import random
 import time
 import base64
 import json
+from datetime import datetime, timezone
 import requests
 
 # 1. Configuration
@@ -11,10 +12,35 @@ WP_URL = os.environ.get("WP_URL", "").rstrip("/")
 WP_USERNAME = os.environ.get("WP_USERNAME", "")
 WP_APP_PASSWORD = os.environ.get("WP_APP_PASSWORD", "")
 GH_TOKEN = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN", "")
+FORCE_POST = os.environ.get("FORCE_POST", "").lower() == "true"
 
 if not WP_URL or not WP_USERNAME or not WP_APP_PASSWORD:
     print("Error: Missing WordPress configuration (WP_URL, WP_USERNAME, or WP_APP_PASSWORD).")
     exit(1)
+
+wp_api_endpoint = f"{WP_URL}/wp-json/wp/v2/posts"
+clean_password = WP_APP_PASSWORD.replace(" ", "")
+credentials = f"{WP_USERNAME}:{clean_password}"
+token = base64.b64encode(credentials.encode()).decode("utf-8")
+
+headers = {
+    "Authorization": f"Basic {token}",
+    "Content-Type": "application/json",
+    "User-Agent": "Mozilla/5.0"
+}
+
+# Check if a post was already published today (UTC / UK date) so multiple cron slots between 5AM-4PM guarantee 1 post/day
+today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+if not FORCE_POST:
+    try:
+        recent_res = requests.get(f"{wp_api_endpoint}?per_page=1", headers=headers, timeout=15)
+        if recent_res.status_code == 200 and len(recent_res.json()) > 0:
+            latest_post_date = recent_res.json()[0].get("date_gmt", "")[:10]
+            if latest_post_date == today_str:
+                print(f"A blog post was already published today ({today_str}). Exiting cleanly.")
+                exit(0)
+    except Exception as e:
+        print(f"Date check warning: {e}")
 
 # 2. Pick a Topic
 TOPICS_FILE = "topics.txt"
@@ -32,24 +58,77 @@ else:
 
 print(f"\nProcessing Topic: '{selected_topic}'")
 
-# Organic randomized delay (10 to 90 seconds)
-delay_seconds = random.randint(10, 90)
+# Organic randomized delay (10 to 60 seconds)
+delay_seconds = random.randint(10, 60)
 print(f"Applying organic delay of {delay_seconds} seconds...")
 time.sleep(delay_seconds)
 
 article_html = None
 article_excerpt = None
 
+# Custom topic-specific dictionary for queued topics so descriptions & content are always 100% tailored
+CUSTOM_TOPIC_GUIDES = {
+    "UK IPTV 24-Hour Free Trial: How to Test Buffer-Free Quality in 2026": {
+        "excerpt": "Want to test channel stability, 4K sports frame rates, and VOD speed before subscribing? Learn how to claim and test your WavePro TV 24-hour UK trial on Firestick and Smart TV.",
+        "content": """
+<p>Before committing to an annual television subscription, every smart UK viewer wants to see how channels perform during peak evening hours on their own broadband connection. With a <strong>WavePro TV 24-Hour Trial</strong>, you can test over 20,000+ live channels, 50fps UK sports feeds, and our 100,000+ 4K movie library directly on your Amazon Firestick or Smart TV.</p>
+<h2>What to Test During Your 24-Hour UK IPTV Trial</h2>
+<ul>
+    <li><strong>Peak-Time Sports Stability (7:30 PM – 10:00 PM GMT):</strong> Switch between Sky Sports Main Event UHD, TNT Sports Ultimate 4K, and live PPV events to verify zero buffering on your ISP.</li>
+    <li><strong>Channel Zapping Speed:</strong> Test how quickly channels load using Xtream Codes API on TiviMate or IPTV Smarters Pro.</li>
+    <li><strong>7-Day UK EPG &amp; Catch-Up:</strong> Browse full British TV listings across BBC, ITV, Channel 4, and Sky Entertainment.</li>
+</ul>
+<h2>How to Request Your Instant Trial on WhatsApp</h2>
+<ol>
+    <li>Install <strong>TiviMate</strong>, <strong>IPTV Smarters Pro</strong>, or <strong>IBO Player</strong> on your streaming device.</li>
+    <li>Click the WhatsApp button on <a href="https://waveprotv.com">waveprotv.com</a> and tell our UK support team which device you use.</li>
+    <li>Receive your Xtream Codes login credentials in minutes and start watching immediately!</li>
+</ol>
+"""
+    },
+    "How to Watch Formula 1 and MotoGP Live in the UK in 4K 60FPS": {
+        "excerpt": "Stream every Formula 1 Grand Prix, Sprint Qualifying, and MotoGP race weekend live in 4K UHD and 50/60fps via Sky Sports F1 UHD and TNT Sports without paying £70+/month.",
+        "content": """
+<p>For British motorsport fans, following both <strong>Formula 1</strong> and <strong>MotoGP</strong> across an entire 24-race calendar requires two separate expensive subscriptions: <strong>Sky Sports F1</strong> for Grand Prix weekends and <strong>TNT Sports</strong> for MotoGP, WorldSBK, and Formula E. With <strong>WavePro TV</strong>, you get every practice session, qualifying shootout, Sprint race, and Sunday Grand Prix in native 4K UHD and 50fps/60fps under one roof.</p>
+<h2>Complete UK Motorsport Channels Included on WavePro TV</h2>
+<ul>
+    <li><strong>Sky Sports F1 UHD (4K 50fps):</strong> Full Martin Brundle and Crofty commentary, pit-lane feeds, driver onboard cameras, and Ted's Notebook.</li>
+    <li><strong>TNT Sports 2 &amp; Ultimate 4K:</strong> Every MotoGP, Moto2, and Moto3 session live with British studio presentation.</li>
+    <li><strong>F1TV Pro International Feeds:</strong> Dedicated driver tracker, telemetry data channel, and international English feeds.</li>
+</ul>
+<p>Never miss lights out again—explore our motorsport-ready packages at <a href="https://waveprotv.com/#pricing">WavePro TV</a>!</p>
+"""
+    },
+    "Best UK Channels on IPTV: BBC, ITV, Channel 4, Sky Cinema and Documentaries": {
+        "excerpt": "Explore the complete UK entertainment lineup on WavePro TV—including regional BBC & ITV HD variants, all 11 Sky Cinema 4K channels, Sky Atlantic, Discovery, and British kids' television.",
+        "content": """
+<p>While live football often grabs the headlines, a truly great UK IPTV subscription replaces your entire household's living room television. <strong>WavePro TV</strong> delivers the complete British free-to-air and premium entertainment lineup in 1080p Full HD and 4K Ultra HD.</p>
+<h2>What UK Entertainment &amp; Movie Channels Are Included?</h2>
+<ul>
+    <li><strong>UK Terrestrial &amp; Regional HD:</strong> All regional variants of BBC One HD, BBC Two, ITV1–4 HD, Channel 4 HD, Channel 5, E4, More4, and Dave.</li>
+    <li><strong>Sky Entertainment &amp; Drama:</strong> Sky Atlantic VIP (home of flagship HBO dramas), Sky Max, Sky Witness, Sky Comedy, Gold, and Alibi.</li>
+    <li><strong>All 11 Sky Cinema Channels in FHD/4K:</strong> Sky Cinema Premiere, Select, Hits, Greats, Animation, Action, Comedy, Thriller, Drama, and Sci-Fi/Horror.</li>
+    <li><strong>Documentaries &amp; History:</strong> Discovery Channel, National Geographic Wild, Sky Documentaries, Sky Nature, History, and Crime+Investigation.</li>
+</ul>
+<p>Upgrade your family's home entertainment today at <a href="https://waveprotv.com/#pricing">WavePro TV</a>.</p>
+"""
+    }
+}
+
+if selected_topic in CUSTOM_TOPIC_GUIDES:
+    article_excerpt = CUSTOM_TOPIC_GUIDES[selected_topic]["excerpt"]
+    article_html = CUSTOM_TOPIC_GUIDES[selected_topic]["content"].strip()
+
 system_prompt = (
     "You are a premier UK tech journalist, streaming specialist, and SEO authority writing for 'WavePro TV' (waveprotv.com). "
     "Write an engaging, highly specific, 900-word SEO-optimized blog post in British English that directly answers and focuses 100% on the exact title provided. "
     "Format in clean semantic HTML with <p>, <h2>, <h3>, <ul>, <li>, and <strong> tags (do NOT include <h1> or markdown code fences). "
-    "The very first <p> paragraph MUST be a compelling 2-sentence summary specifically tailored to the exact topic (no generic filler) so it can also serve as the meta description/excerpt."
+    "The very first <p> paragraph MUST be a compelling 2-sentence summary specifically tailored to the exact topic so it can also serve as the meta description/excerpt."
 )
 user_prompt = f"Write a comprehensive, topic-specific UK guide titled: '{selected_topic}'."
 
 # Attempt 1: GitHub Models Inference API
-if GH_TOKEN:
+if not article_html and GH_TOKEN:
     try:
         from openai import OpenAI
         client = OpenAI(
@@ -77,7 +156,7 @@ if GH_TOKEN:
     except Exception as e:
         print(f"OpenAI client init note: {e}")
 
-# Attempt 2: Pollinations OpenAI-compatible AI endpoint (no key required)
+# Attempt 2: Pollinations OpenAI-compatible AI endpoint
 if not article_html:
     try:
         print("Attempting Pollinations AI generation...")
@@ -103,11 +182,9 @@ if not article_html:
     except Exception as e:
         print(f"Pollinations AI note: {e}")
 
-# Clean code fences if present
-if article_html:
+if article_html and not article_excerpt:
     article_html = re.sub(r"^```(?:html)?\s*", "", article_html)
     article_html = re.sub(r"\s*```$", "", article_html).strip()
-    # Extract the first paragraph text as a 100% matching custom excerpt
     first_p = re.search(r"<p>(.*?)</p>", article_html, re.DOTALL | re.IGNORECASE)
     if first_p:
         clean_p = re.sub(r"<[^>]+>", "", first_p.group(1)).strip()
@@ -117,7 +194,7 @@ if article_html:
 # Fallback: Topic-Specific UK Article & Excerpt Generator
 if not article_html or not article_excerpt:
     t_lower = selected_topic.lower()
-    if any(k in t_lower for k in ["ppv", "boxing", "ufc", "f1", "formula 1", "football", "premier league", "champions league", "sports", "sky sports", "tnt"]):
+    if any(k in t_lower for k in ["ppv", "boxing", "ufc", "f1", "formula 1", "football", "premier league", "champions league", "sports", "sky sports", "tnt", "scottish", "fa cup", "nfl", "nba"]):
         article_excerpt = f"Discover how UK sports fans stream {selected_topic} live in true 4K UHD and 50fps without expensive pay-per-view fees or broadcaster blackouts."
         article_html = f"""
 <p>Watching live sport in the United Kingdom has become increasingly fragmented across Sky Sports Box Office, TNT Sports Box Office, DAZN PPV, and subscription channels. In this dedicated UK guide to <strong>{selected_topic}</strong>, we break down how you can stream every live event in native 4K UHD and smooth 50fps with WavePro TV.</p>
@@ -136,7 +213,7 @@ if not article_html or not article_excerpt:
 </ol>
 <p>Ready for kick-off? Visit <a href="https://waveprotv.com/#pricing">WavePro TV Plans</a> or message us on WhatsApp for an instant 24-hour trial!</p>
 """
-    elif any(k in t_lower for k in ["vpn", "isp", "virgin", "bt", "sky broadband", "buffer", "throttl", "freeze", "speed"]):
+    elif any(k in t_lower for k in ["vpn", "isp", "virgin", "bt", "sky broadband", "buffer", "throttl", "freeze", "speed", "anti-freeze"]):
         article_excerpt = f"Practical technical guide for {selected_topic}—learn how to bypass UK ISP traffic shaping, optimize your router DNS, and achieve buffer-free 4K playback."
         article_html = f"""
 <p>If your live television streams suffer from sudden evening slowdowns or weekend matchday blocks on Sky Broadband, Virgin Media, or BT Halo, our technical guide on <strong>{selected_topic}</strong> walks you through the exact network tweaks to restore instant, buffer-free 4K streaming.</p>
@@ -161,17 +238,6 @@ if not article_html or not article_excerpt:
 </ul>
 <p>Need personalized setup assistance? Visit <a href="https://waveprotv.com/#pricing">WavePro TV</a> and chat with our 24/7 UK support team on WhatsApp!</p>
 """
-
-# 4. Post to WordPress via REST API
-wp_api_endpoint = f"{WP_URL}/wp-json/wp/v2/posts"
-clean_password = WP_APP_PASSWORD.replace(" ", "")
-credentials = f"{WP_USERNAME}:{clean_password}"
-token = base64.b64encode(credentials.encode()).decode("utf-8")
-
-headers = {
-    "Authorization": f"Basic {token}",
-    "Content-Type": "application/json"
-}
 
 post_data = {
     "title": selected_topic,
