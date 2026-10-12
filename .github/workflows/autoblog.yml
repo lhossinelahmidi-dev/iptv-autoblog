@@ -32,15 +32,13 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Generate & Publish Article to WordPress
+      - name: Deploy Updated Theme Images to WordPress
         env:
           WP_URL: ${{ secrets.WP_URL }}
           WP_USERNAME: ${{ secrets.WP_USERNAME }}
           WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          python autoblog.py
+          python deploy_theme.py
 
       - name: Commit & Push Updated Topics List
         run: |
