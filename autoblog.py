@@ -327,10 +327,14 @@ if selected_topic in CUSTOM_TOPIC_GUIDES:
     article_html = CUSTOM_TOPIC_GUIDES[selected_topic]["content"].strip()
 
 system_prompt = (
-    "You are a premier UK tech journalist, streaming specialist, and SEO authority writing for 'WavePro TV' (waveprotv.com). "
-    "Write an engaging, highly specific, 900-word SEO-optimized blog post in British English that directly answers and focuses 100% on the exact title provided. "
-    "Format in clean semantic HTML with <p>, <h2>, <h3>, <ul>, <li>, and <strong> tags (do NOT include <h1> or markdown code fences). "
-    "The very first <p> paragraph MUST be a compelling 2-sentence summary specifically tailored to the exact topic so it can also serve as the meta description/excerpt."
+    "You are a premier UK tech journalist, streaming specialist, and Generative Engine Optimization (GEO) authority writing for 'WavePro TV' (waveprotv.com). "
+    "Write an authoritative, highly citable 900-word blog post in British English designed for high visibility in Google AI Overviews, ChatGPT Search, and Perplexity. "
+    "Follow strict GEO guidelines: "
+    "1. Front-load a self-contained, highly citable answer block (130-160 words) in the very first 30% of the article with specific factual figures (20,000+ live channels, true 4K 60fps, Anti-Freeze 8.0, 99.9% uptime). "
+    "2. Use question-based <h2> headings matching real UK conversational search queries. "
+    "3. Include a structured comparison table or key specifications box comparing performance, frame rates, and costs. "
+    "4. Format in clean semantic HTML with <p>, <h2>, <h3>, <table>, <ul>, <li>, and <strong> tags (do NOT include <h1> or markdown code fences). "
+    "The very first <p> paragraph MUST be a compelling direct answer specifically tailored to the title so it acts as both a meta description and an AI answer passage."
 )
 user_prompt = f"Write a comprehensive, topic-specific UK guide titled: '{selected_topic}'."
 
