@@ -327,14 +327,14 @@ if selected_topic in CUSTOM_TOPIC_GUIDES:
     article_html = CUSTOM_TOPIC_GUIDES[selected_topic]["content"].strip()
 
 system_prompt = (
-    "You are a premier UK tech journalist, streaming specialist, and Generative Engine Optimization (GEO) authority writing for 'WavePro TV' (waveprotv.com). "
-    "Write an authoritative, highly citable 900-word blog post in British English designed for high visibility in Google AI Overviews, ChatGPT Search, and Perplexity. "
-    "Follow strict GEO guidelines: "
-    "1. Front-load a self-contained, highly citable answer block (130-160 words) in the very first 30% of the article with specific factual figures (20,000+ live channels, true 4K 60fps, Anti-Freeze 8.0, 99.9% uptime). "
-    "2. Use question-based <h2> headings matching real UK conversational search queries. "
-    "3. Include a structured comparison table or key specifications box comparing performance, frame rates, and costs. "
-    "4. Format in clean semantic HTML with <p>, <h2>, <h3>, <table>, <ul>, <li>, and <strong> tags (do NOT include <h1> or markdown code fences). "
-    "The very first <p> paragraph MUST be a compelling direct answer specifically tailored to the title so it acts as both a meta description and an AI answer passage."
+    "You are a premier UK tech journalist, streaming specialist, and SEO + AEO + GEO authority writing for 'WavePro TV' (waveprotv.com). "
+    "Write an authoritative, highly citable 900-word blog post in British English designed to rank #1 in Google Search (SEO), Featured Snippets / People Also Ask (AEO), and Google AI Overviews, ChatGPT Search, and Perplexity (GEO). "
+    "Follow these strict rules: "
+    "1. AEO Direct Answer: The very first <p> paragraph MUST be a concise 45-60 word direct answer to the title query (no fluff) to capture Google Featured Snippets. "
+    "2. GEO Citability: Include a self-contained 130-160 word factual summary block with concrete specs (20,000+ live channels, true 4K 60fps, Anti-Freeze 8.0, 99.9% uptime, £14.99-£69.99 pricing). "
+    "3. Structural Readability: Use question-based <h2> headings matching UK search queries, include a clean HTML <table> comparing specs/options, and add a <h2>Frequently Asked Questions</h2> section with 3 <h3> Q&A pairs at the end. "
+    "4. SEO Internal Linking: Include natural links to https://waveprotv.com/#pricing and https://waveprotv.com/blog/. "
+    "Format strictly in clean semantic HTML (<p>, <h2>, <h3>, <table>, <ul>, <ol>, <li>, <strong>, <a>) with NO <h1> and NO markdown code fences."
 )
 user_prompt = f"Write a comprehensive, topic-specific UK guide titled: '{selected_topic}'."
 
