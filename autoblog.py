@@ -464,7 +464,27 @@ print(f"WordPress Response Status Code: {res.status_code}")
 
 if res.status_code in [200, 201]:
     post_info = res.json()
-    print(f"\nSUCCESS! Post is LIVE at: {post_info.get('link', '')}")
+    post_link = post_info.get('link', '')
+    print(f"\nSUCCESS! Post is LIVE at: {post_link}")
+
+    # Instant Indexing via IndexNow (Bing, ChatGPT Search, Perplexity)
+    try:
+        indexnow_key = "wptv2026indexnow8a9f3c7d1e4b2a5f"
+        host_domain = WP_URL.replace("https://", "").replace("http://", "").split("/")[0]
+        in_res = requests.post(
+            "https://api.indexnow.org/indexnow",
+            json={
+                "host": host_domain,
+                "key": indexnow_key,
+                "keyLocation": f"{WP_URL}/{indexnow_key}.txt",
+                "urlList": [post_link, f"{WP_URL}/blog/", f"{WP_URL}/"]
+            },
+            timeout=10
+        )
+        print(f"IndexNow ping status: {in_res.status_code}")
+    except Exception as e:
+        print(f"IndexNow ping warning: {e}")
+
     if topics:
         remaining_topics = topics[1:]
         with open(TOPICS_FILE, "w", encoding="utf-8") as f:
