@@ -42,21 +42,70 @@ if not FORCE_POST:
     except Exception as e:
         print(f"Date check warning: {e}")
 
-# 2. Pick a Topic
+# 2. Pick a Topic with Anti-Duplicate Safeguard
 TOPICS_FILE = "topics.txt"
 USED_TOPICS_FILE = "used_topics.txt"
+
+# Fetch existing published titles directly from WordPress to prevent ANY duplicate
+existing_titles = set()
+try:
+    res_wp = requests.get(f"{wp_api_endpoint}?per_page=100&_fields=title&status=publish", headers=headers, timeout=20)
+    if res_wp.status_code == 200:
+        for p in res_wp.json():
+            raw_t = p.get("title", {}).get("rendered", "")
+            clean_t = re.sub(r"&#\d+;|&[a-z]+;|[^\w\s]", "", raw_t).lower().strip()
+            if clean_t:
+                existing_titles.add(clean_t)
+        print(f"Loaded {len(existing_titles)} existing post titles from WordPress to prevent duplicates.")
+except Exception as e:
+    print(f"Warning fetching existing titles: {e}")
 
 topics = []
 if os.path.exists(TOPICS_FILE):
     with open(TOPICS_FILE, "r", encoding="utf-8") as f:
         topics = [line.strip() for line in f if line.strip()]
 
-if not topics:
-    selected_topic = "How to Watch Premier League and Champions League in 4K UHD in the UK"
-else:
-    selected_topic = topics[0]
+selected_topic = None
+# Iterate through topics.txt and pick the first one that is NOT already published
+while topics:
+    candidate = topics[0]
+    cand_norm = re.sub(r"&#\d+;|&[a-z]+;|[^\w\s]", "", candidate).lower().strip()
+    if cand_norm not in existing_titles:
+        selected_topic = candidate
+        break
+    else:
+        print(f"Skipping already published topic: '{candidate}'")
+        topics = topics[1:]
+        with open(TOPICS_FILE, "w", encoding="utf-8") as f:
+            for t in topics:
+                f.write(t + "\n")
+        with open(USED_TOPICS_FILE, "a", encoding="utf-8") as f:
+            f.write(candidate + "\n")
 
-print(f"\nProcessing Topic: '{selected_topic}'")
+# If topics.txt is empty, generate from an extensive dynamic matrix and verify it's NOT on WordPress
+if not selected_topic:
+    matrix_actions = ["How to Stream", "Best Setup for", "Complete Guide to", "Top Rated", "How to Optimize", "Ultimate Guide to"]
+    matrix_subjects = ["4K Ultra HD Sports", "Premier League in 4K", "Firestick 4K Max IPTV", "Smart TV 4K Channels", "TiviMate Premium UK", "IPTV Smarters Pro 4K", "Buffer-Free Football", "Sky & TNT Sports 4K"]
+    matrix_years = ["in 2026", "UK Edition (2026)", "for British Viewers", "with WavePro TV"]
+    
+    candidates = []
+    for a in matrix_actions:
+        for s in matrix_subjects:
+            for y in matrix_years:
+                candidates.append(f"{a} {s} {y}")
+    random.shuffle(candidates)
+    
+    for cand in candidates:
+        cand_norm = re.sub(r"&#\d+;|&[a-z]+;|[^\w\s]", "", cand).lower().strip()
+        if cand_norm not in existing_titles:
+            selected_topic = cand
+            break
+
+if not selected_topic:
+    print("No new unique topic available today. Exiting safely to prevent duplicates.")
+    exit(0)
+
+print(f"\nProcessing Unique Topic: '{selected_topic}'")
 
 # Organic randomized delay (10 to 60 seconds)
 delay_seconds = random.randint(10, 60)
