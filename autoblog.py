@@ -327,16 +327,23 @@ if selected_topic in CUSTOM_TOPIC_GUIDES:
     article_html = CUSTOM_TOPIC_GUIDES[selected_topic]["content"].strip()
 
 system_prompt = (
-    "You are a premier UK tech journalist, streaming specialist, and SEO + AEO + GEO authority writing for 'WavePro TV' (waveprotv.com). "
-    "Write an authoritative, highly citable 900-word blog post in British English designed to rank #1 in Google Search (SEO), Featured Snippets / People Also Ask (AEO), and Google AI Overviews, ChatGPT Search, and Perplexity (GEO). "
-    "Follow these strict rules: "
-    "1. AEO Direct Answer: The very first <p> paragraph MUST be a concise 45-60 word direct answer to the title query (no fluff) to capture Google Featured Snippets. "
-    "2. GEO Citability: Include a self-contained 130-160 word factual summary block with concrete specs (20,000+ live channels, true 4K 60fps, Anti-Freeze 8.0, 99.9% uptime, £14.99-£69.99 pricing). "
-    "3. Structural Readability: Use question-based <h2> headings matching UK search queries, include a clean HTML <table> comparing specs/options, and add a <h2>Frequently Asked Questions</h2> section with 3 <h3> Q&A pairs at the end. "
-    "4. SEO Internal Linking: Include natural links to https://waveprotv.com/#pricing and https://waveprotv.com/blog/. "
-    "Format strictly in clean semantic HTML (<p>, <h2>, <h3>, <table>, <ul>, <ol>, <li>, <strong>, <a>) with NO <h1> and NO markdown code fences."
+    "You are a leading UK technology editor, streaming infrastructure engineer, and world-class AEO (Answer Engine Optimization) & GEO (Generative Engine Optimization) authority writing for 'WavePro TV' (waveprotv.com). "
+    "Your objective is to produce an authoritative, 950-1200 word British English guide engineered to capture Google Featured Snippets (#0 Position), Google 'People Also Ask' (PAA) accordions, voice search answers, and citations in Google AI Overviews, Perplexity, and ChatGPT Search. "
+    "\n### STRICT AEO & GEO ARCHITECTURAL RULES:\n"
+    "1. Inverted Pyramid Direct Answer (Featured Snippet Trap): The very first paragraph MUST directly answer the title query in exactly 42-55 words without any introductory filler (NO 'In today's digital world', NO rhetorical questions). Start immediately with a definitive factual declaration with key terms in <strong>bold</strong>.\n"
+    "2. Numbered Step-by-Step Snippet (for How-To queries): Provide a concise 4-to-6 step <ol> list where every item begins with a bold action verb (e.g. '1. <strong>Install Downloader:</strong> ...') engineered for Google list snippets.\n"
+    "3. Structured Comparison Table: Include a semantic HTML <table> with <thead> comparing specifications (Resolution, Channels, Anti-Freeze, Setup Time, Price in EUR €).\n"
+    "4. 'People Also Ask' (PAA) Question Hierarchy: Use exactly 3 to 4 question-based <h2> and <h3> subheadings matching real UK voice searches. Under each question heading, the first sentence MUST be a standalone 35-45 word direct answer before expanding.\n"
+    "5. Entity-Dense Facts: Cite concrete verifiable streaming metrics: 20,000+ live channels, 60,000+ VOD titles, true 4K 60fps feeds, Anti-Freeze 9.4 protocol, 25 Mbps requirement, and €14.99 - €79.99 pricing.\n"
+    "6. High-Converting Internal Links: Naturally embed semantic links to 'https://waveprotv.com/#pricing' (WavePro TV subscription plans) and 'https://waveprotv.com' (WavePro TV homepage) with descriptive anchor text.\n"
+    "7. Frequently Asked Questions (AEO Q&A): End with a <h2>Frequently Asked Questions</h2> section containing 3 detailed <h3> question pairs with direct answers.\n"
+    "8. Clean Semantic HTML: Output ONLY valid HTML (<p>, <h2>, <h3>, <table>, <thead>, <tbody>, <tr>, <th>, <td>, <ul>, <ol>, <li>, <strong>, <a>). Do NOT use <h1>, do NOT output markdown code fences."
 )
-user_prompt = f"Write a comprehensive, topic-specific UK guide titled: '{selected_topic}'."
+user_prompt = (
+    f"Write the definitive, comprehensive UK AEO guide for the topic: '{selected_topic}'. "
+    f"Ensure the direct answer captures Position Zero for '{selected_topic}', all prices are formatted in EUR (€), "
+    f"and the content provides actionable value for British cord-cutters and streaming viewers."
+)
 
 # Attempt 1: GitHub Models Inference API
 if not article_html and GH_TOKEN:
